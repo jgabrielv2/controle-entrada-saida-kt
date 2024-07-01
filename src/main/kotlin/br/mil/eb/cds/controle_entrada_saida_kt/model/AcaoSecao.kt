@@ -1,22 +1,45 @@
 package br.mil.eb.cds.controle_entrada_saida_kt.model
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import br.mil.eb.cds.controle_entrada_saida_kt.enums.TipoAcaoSecao
+import jakarta.persistence.*
 import java.time.LocalTime
 
 @Entity
-data class AcaoSecao(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+class AcaoSecao(
 
-    var divSec: String,
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        val id: Long? = null,
 
-    var postoGrad: String,
+        @Enumerated(EnumType.STRING)
+        val tipo: TipoAcaoSecao,
 
-    var nomeGuerra: String,
+        var divSec: String,
 
-    var horario: LocalTime
-)
+        var postoGrad: String,
+
+        var nomeGuerra: String,
+
+        var horario: LocalTime,
+
+        ) {
+
+
+
+    override fun toString(): String {
+        return this::class.simpleName + "(id = $id )"
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is AcaoSecao) return false
+
+        if (id != other.id) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return id?.hashCode() ?: 0
+    }
+}
