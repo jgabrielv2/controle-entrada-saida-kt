@@ -7,7 +7,7 @@ import jakarta.persistence.Id
 import java.time.LocalTime
 
 @Entity
-data class Entrada(
+data class AcaoSecao(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
